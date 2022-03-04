@@ -4,21 +4,21 @@ const app = express();
 // third-party-packages
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const cors = require('cors')
 // my exports
 const initDb = require('./helpers/db').initDb;
 const settingsRoutes = require('./routes/schoolSettings');
 
 // enabling CORS
-app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-	res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
-	next();
-});
+app.use(cors({
+	origin: process.env.CLIENT_URL,
+	credentials:true,     
+	optionSuccessStatus:200
+}));
 
 app.use(helmet());
 // parsing the body properties to accept application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use('/settings', settingsRoutes);
 
@@ -36,11 +36,11 @@ initDb((error, client) => {
 	if (error) {
 		console.log('Failed To Connect...');
 	} else {
-		console.log('Connected...');
+		console.log('DB Connected...');
 		if (process.env.PORT) {
 			app.listen(process.env.PORT);
 		} else {
-			app.listen(2000);
+			app.listen(5000);
 		}
 	}
 });

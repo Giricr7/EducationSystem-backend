@@ -1,7 +1,6 @@
 const Student = require('../models/student');
 const Class = require('../models/class');
 const Subject = require('../models/subject');
-const Teachewr = require('../models/teacher');
 const { validationResult } = require('express-validator');
 const { ObjectId } = require('mongodb');
 const Teacher = require('../models/teacher');
