@@ -2,7 +2,6 @@
 const express = require('express');
 const app = express();
 // third-party-packages
-const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors')
 // my exports
