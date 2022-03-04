@@ -10,7 +10,7 @@ const settingsRoutes = require('./routes/schoolSettings');
 
 // enabling CORS
 app.use(cors({
-	origin: process.env.CLIENT_URL,
+	origin: "https://education-system.netlify.app",
 	credentials:true,     
 	optionSuccessStatus:200
 }));
